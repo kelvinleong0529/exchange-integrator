@@ -1,18 +1,18 @@
 package interactive_broker_third_party
 
 type (
-	ExchangeType string
+	ListingExchange string
 )
 
 const (
-	ExchangeTypeAmericanStockExchange ExchangeType = `AMEX`
-	ExchangeTypeBulletinBoard         ExchangeType = `ARCAEDGE`
-	ExchangeTypeNewYorkStockExchange  ExchangeType = `ARCAEDGE`
-	ExchangeTypeNASDAQ                ExchangeType = `ISLAND`
-	ExchangeTypePinkSheets            ExchangeType = `ARCAEDGE`
-	ExchangeTypeOTCQB                 ExchangeType = `ARCAEDGE`
-	ExchangeTypeOTCQX                 ExchangeType = `ARCAEDGE`
-	ExchangeTypeTorontoExchange       ExchangeType = `TSE`
-	ExchangeTypeVentureExchange       ExchangeType = `VENTURE`
-	ExchangeTypeNEX                   ExchangeType = `AEQNEO`
+	ListingExchangeAmericanStockExchange ListingExchange = `AMEX`
+	ListingExchangeBulletinBoard         ListingExchange = `ARCAEDGE`
+	ListingExchangeNewYorkStockExchange  ListingExchange = `ARCAEDGE`
+	ListingExchangeNASDAQ                ListingExchange = `ISLAND`
+	ListingExchangePinkSheets            ListingExchange = `ARCAEDGE`
+	ListingExchangeOTCQB                 ListingExchange = `ARCAEDGE`
+	ListingExchangeOTCQX                 ListingExchange = `ARCAEDGE`
+	ListingExchangeTorontoExchange       ListingExchange = `TSE`
+	ListingExchangeVentureExchange       ListingExchange = `VENTURE`
+	ListingExchangeNEX                   ListingExchange = `AEQNEO`
 )

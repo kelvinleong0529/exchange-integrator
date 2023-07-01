@@ -60,7 +60,7 @@ type (
 		Symbol     string
 		Currency   string
 		ContractID uint64
-		ExchangeType
+		ListingExchange
 	}
 
 	FinancialInstrumentsRes struct {
@@ -68,11 +68,11 @@ type (
 	}
 
 	FinancialInstrumentsData struct {
-		ContractID   uint64 `json:"ContractId"`
-		Ticker       string `json:"Ticker"`
-		SecurityType string `json:"SecurityType"`
-		CompanyName  string `json:"CompanyName"`
-		Currency     string `json:"Currency"`
-		ExchangeType `json:"Exchange"`
+		ContractID      uint64 `json:"ContractId"`
+		Ticker          string `json:"Ticker"`
+		SecurityType    string `json:"SecurityType"`
+		CompanyName     string `json:"CompanyName"`
+		Currency        string `json:"Currency"`
+		ListingExchange `json:"Exchange"`
 	}
 )

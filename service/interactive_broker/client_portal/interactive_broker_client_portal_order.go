@@ -45,9 +45,37 @@ func (i *InteractiveBrokerClientPortalRequest) OrderStatus(queryParam *OrderStat
 		return nil, err
 	}
 	request := &InteractiveBrokerClientPortalRequest{
-		method:   http.MethodPost,
+		method:   http.MethodGet,
 		endpoint: fmt.Sprintf(endpointOrderStatus, queryParam.OrderID),
 	}
 	result := new(OrderStatusRes)
+	return result, network.SubmitRequestAndUnmarshalResponse(request, result)
+}
+
+// Modifies an open order. Must call /iserver/accounts endpoint prior to modifying an order.
+// Use /iservers/account/orders endpoint to review open-order(s).
+func (i *InteractiveBrokerClientPortalManager) ModifyOrder(queryParam *ModifyOrderReq) ([]*ModifyOrderRes, error) {
+	if err := validator.New().Struct(queryParam); err != nil {
+		return nil, err
+	}
+	request := &InteractiveBrokerClientPortalRequest{
+		method:   http.MethodPost,
+		endpoint: fmt.Sprintf(endpointUpdateOrder, queryParam.AccountID, queryParam.OrderID),
+	}
+	result := make([]*ModifyOrderRes, 0)
+	return result, network.SubmitRequestAndUnmarshalResponse(request, result)
+}
+
+// Cancels an open order. Must call /iserver/accounts endpoint prior to cancelling an order.
+// Use /iservers/account/orders endpoint to review open-order(s) and get latest order status.
+func (i *InteractiveBrokerClientPortalManager) CancelOrder(queryParam *CancelOrderReq) (*CancelOrderRes, error) {
+	if err := validator.New().Struct(queryParam); err != nil {
+		return nil, err
+	}
+	request := &InteractiveBrokerClientPortalRequest{
+		method:   http.MethodDelete,
+		endpoint: fmt.Sprintf(endpointUpdateOrder, queryParam.AccountID, queryParam.OrderID),
+	}
+	result := new(CancelOrderRes)
 	return result, network.SubmitRequestAndUnmarshalResponse(request, result)
 }

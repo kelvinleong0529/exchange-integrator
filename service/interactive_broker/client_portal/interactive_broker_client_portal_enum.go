@@ -4,7 +4,14 @@ type (
 	LoginType uint
 	Period    string
 	KlineBar  string
+	Currency  string
 
+	// portfolio
+	AccountDisplayName string
+	AccountType        string
+	AccountStatus      string
+
+	// order
 	ListingExchange       string
 	OrderType             string
 	OrderSide             string
@@ -31,6 +38,47 @@ const (
 	KlineBarWeeks   KlineBar = `w`
 	KlineBarMonths  KlineBar = `m`
 
+	CurrencyAUD Currency = `AUD`
+	CurrencyGBP Currency = `GBP`
+	CurrencyCAD Currency = `CAD`
+	CurrencyCNH Currency = `CNH`
+	CurrencyCZK Currency = `CZK`
+	CurrencyDKK Currency = `DKK`
+	CurrencyEUR Currency = `EUR`
+	CurrencyHKD Currency = `HKD`
+	CurrencyHUF Currency = `HUF`
+	CurrencyINR Currency = `INR`
+	CurrencyILS Currency = `ILS`
+	CurrencyJPY Currency = `JPY`
+	CurrencyMXN Currency = `MXN`
+	CurrencyNOK Currency = `NOK`
+	CurrencyNZD Currency = `NZD`
+	CurrencyPLN Currency = `PLN`
+	CurrencyRUB Currency = `RUB`
+	CurrencySGD Currency = `SGD`
+	CurrencySEK Currency = `SEK`
+	CurrencyCHF Currency = `CHF`
+	CurrencyUSD Currency = `USD`
+
+	// portfolio
+	AccountDisplayNameAccountTitle AccountDisplayName = `accountTitle`
+	AccountDisplayNameAccountVan   AccountDisplayName = `accountVan`
+	AccountDisplayNameAccountID    AccountDisplayName = `accountId`
+
+	AccountTypeIndividual   AccountType = `INDIVIDUAL`
+	AccountTypeJoint        AccountType = `JOINT`
+	AccountTypeOrganization AccountType = `ORG`
+	AccountTypeTrust        AccountType = `TRUST`
+	AccountTypeDemo         AccountType = `DEMO`
+
+	AccountStatusOpen      AccountStatus = `O`
+	AccountStatusPendingP  AccountStatus = `P`
+	AccountStatusPendingN  AccountStatus = `N`
+	AccountStatusAbandoned AccountStatus = `A`
+	AccountStatusRejected  AccountStatus = `R`
+	AccountStatusClosed    AccountStatus = `C`
+
+	// order
 	ListingExchangeSMART    ListingExchange = `SMART`
 	ListingExchangeAMEX     ListingExchange = `AMEX`
 	ListingExchangeNYSE     ListingExchange = `NYSE`
@@ -91,6 +139,11 @@ const (
 
 	endpointMarketDataHistory = `hmds/history`
 
+	endpointPortfolioAccounts  = `portfolio/accounts`
+	endpointAccountInformation = `portfolio/%s/meta`
+	endpointSwitchAccount      = `iserver/account`
+
 	endpointPlaceOrders = `/iserver/account/%s/orders`
 	endpointOrderStatus = `/iserver/account/order/status/%s`
+	endpointUpdateOrder = `/iserver/account/%s/order/%s`
 )

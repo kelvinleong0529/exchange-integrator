@@ -59,6 +59,46 @@ type (
 		Volume   float64 `json:"v"`
 	}
 
+	// portfolio
+	PortfolioAccountsRes struct {
+		ID                     string                 `json:"id"`
+		AccountID              string                 `json:"accountId"`
+		AccountVan             string                 `json:"accountVan"`
+		AccountTitle           string                 `json:"accountTitle"`
+		AccountAlias           string                 `json:"accountAlias"`
+		AccountOpenTime        uint64                 `json:"accountStatus"`
+		TradingType            string                 `json:"tradingType"`
+		FinancialAdvisorClient bool                   `json:"faclient"`
+		CovestorAccount        bool                   `json:"covestor"`
+		Parent                 PortfolioAccountParent `json:"parent"`
+		Desc                   string                 `json:"desc"`
+		DisplayName            AccountDisplayName     `json:"displayName"`
+		Currency               `json:"currency"`
+		AccountType            `json:"type"`
+		AccountStatus          `json:"clearingStatus"`
+	}
+
+	PortfolioAccountParent struct {
+		MMC         []string `json:"mmc"`
+		AccountID   string   `json:"accountId"`
+		IsMParent   bool     `json:"isMParent"`
+		IsMChild    bool     `json:"isMChild"`
+		IsMultiplex bool     `json:"isMultiplex"`
+	}
+
+	AccountInformationReq struct {
+		AccountID string `validate:"required"`
+	}
+
+	SwitchAccountReq struct {
+		AccountID string
+	}
+
+	SwitchAccountRes struct {
+		Set       bool   `json:"set"`
+		AccountID string `json:"acctId"`
+	}
+
 	// order
 	PlaceOrdersReq struct {
 		AccountID                  string `validate:"required"`
@@ -70,7 +110,7 @@ type (
 		IsSingleGroup              bool
 		OutsideRegularTradingHours bool
 		Price                      float64
-		AuctionPrice               float64
+		AuxPrice                   float64
 		Ticker                     string
 		TrailingAmount             float64
 		Referrer                   string
@@ -140,9 +180,31 @@ type (
 		TimeInForce                  `json:"tif"`
 	}
 
+	ModifyOrderReq struct {
+		AccountID                  string `validate:"required"`
+		OrderID                    string `validate:"required"`
+		ContractID                 string
+		OutsideRegularTradingHours bool
+		Price                      float64
+		AuxPrice                   float64
+		Ticker                     string
+		Quantity                   float64
+		Deactivate                 bool
+		OrderType
+		OrderSide
+		ListingExchange
+		TimeInForce
+	}
+
+	ModifyOrderRes struct {
+		OrderID      string `json:"order_id"`
+		LocalIrderID string `json:"local_order_id"`
+		OrderStatus  `json:"order_status"`
+	}
+
 	CancelOrderReq struct {
-		AccountID string
-		OrderID   string
+		AccountID string `validate:"required"`
+		OrderID   string `validate:"required"`
 	}
 
 	CancelOrderRes struct {

@@ -213,4 +213,40 @@ type (
 		ContractID uint64 `json:"conid"`
 		Account    string `json:"account"`
 	}
+
+	// alert
+	CreateOrModifyAlertReq struct {
+		AccountID                   string `validate:"required"`
+		OrderID                     uint64
+		AlertName                   string
+		AlertMessage                string
+		AlertRepeatable             uint8
+		Email                       string
+		SendMessage                 uint8
+		ExpireTime                  string
+		OutsideRegularTradingHours  uint8
+		TraderWorkstationOrdersOnly uint8
+		ShowPopup                   uint8
+		ToolID                      uint8
+		PlayAudio                   string
+		Conditions                  []struct {
+			AlertType
+			ContractIDExchange string
+			Operator           string `validate:"oneof=>= <="`
+			TriggerMethod      string
+			Value              string `validate:"required"`
+			AlertLogicBind
+			TimeZone string
+		}
+		TimeInForce
+	}
+
+	CreateOrModifyAlertRes struct {
+		RequestID      uint64 `json:"request_id"`
+		OrderID        uint64 `json:"order_id"`
+		Success        bool   `json:"success"`
+		Text           string `json:"text"`
+		OrderStatus    string `json:"order_status"`
+		WarningMessage string `json:"warning_message"`
+	}
 )

@@ -19,6 +19,10 @@ type (
 	OrderStatus           string
 	OrderStatusSide       string
 	TimeInForce           string
+
+	// alert
+	AlertType      uint8
+	AlertLogicBind string
 )
 
 const (
@@ -131,7 +135,7 @@ const (
 	TimeInForceImmediateOrCancel  TimeInForce = `IOC`
 
 	// endpoints
-	endpointKeepaliveSession     = `/tickle`
+	endpointKeepAliveSession     = `/tickle`
 	endpointTerminateSession     = `/logout`
 	endpointValidateSSO          = `/sso/validate`
 	endpointAuthenticationStatus = `/iserver/auth/status`
@@ -146,4 +150,23 @@ const (
 	endpointPlaceOrders = `/iserver/account/%s/orders`
 	endpointOrderStatus = `/iserver/account/order/status/%s`
 	endpointUpdateOrder = `/iserver/account/%s/order/%s`
+)
+
+const (
+	// alert
+	AlertTypePrice AlertType = iota + 1
+	_
+	AlertTypeTime
+	AlertTypeMargin
+	AlertTypeTrade
+	AlertTypeVolume
+	AlertTypeMTAMarket
+	AlertTypeMTAPosition
+	AlertTypeMTAAccount
+
+	AlertLogicBindAND AlertLogicBind = `a`
+	AlertLogicBindOR  AlertLogicBind = `o`
+	AlertLogicBindEND AlertLogicBind = `n`
+
+	endpointCreateOrModifyAlert = `iserver/account/%s/alert`
 )

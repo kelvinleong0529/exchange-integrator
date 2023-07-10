@@ -10,7 +10,7 @@ import (
 func (i *InteractiveBrokerClientPortalManager) KeepAliveSession() error {
 	request := &InteractiveBrokerClientPortalRequest{
 		method:   http.MethodPost,
-		endpoint: endpointKeepaliveSession,
+		endpoint: endpointKeepAliveSession,
 	}
 	return network.SubmitRequestAndUnmarshalResponse(request, new(struct{}))
 }
